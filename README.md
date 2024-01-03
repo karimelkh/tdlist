@@ -5,8 +5,8 @@ simple todo list CLI app
 
 ## TODOs
 
-- [ ] use stack STL instead of mine.
-- [ ] enhance code readability
+- [X] use stack STL instead of mine.
+- [X] enhance code readability
 - [ ] change task state (e.g., Completed, Canceled, ...)
 - [ ] enhance display/output formatting: display table function
 - [ ] save the tasks in a file
