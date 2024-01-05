@@ -7,9 +7,9 @@ simple todo list CLI app
 
 - [X] use stack STL instead of mine.
 - [X] enhance code readability
-- [ ] add **stats** option.
+- [X] add **stats** option.
 - [ ] add the **edit** option.
-- [ ] bug: deleting a task that dosn't exist
+- [X] bug: deleting a task that dosn't exist
 - [ ] change task state (e.g., Completed, Canceled, ...)
 - [ ] enhance display/output formatting: display table function
 - [ ] save the tasks in a file
