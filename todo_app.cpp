@@ -25,8 +25,11 @@ private:
   int tasks_count = 0;
 
 public:
- 
+
+  int get_tasks_count() {return tasks_count;}
+
   task* find_task(int task_id) {
+    if(tasks_list.empty()) return nullptr;
     for(const auto& task : tasks_list) {
       if(task->id == task_id) return task;
     }
@@ -40,13 +43,25 @@ public:
   }
   
   void del_task(int task_id) {
+    if(tasks_list.empty()) {
+      cout << "You have nothing to delete." << endl;
+      return;
+    }
     task* t = find_task(task_id);
+    if(t == nullptr) {
+      cout << "Task not found." << endl;
+      return;
+    }
     tasks_list.remove(t);
     delete t;
     tasks_count-- ;
   }
 
   void display_tasks() {
+    if(tasks_list.empty()) {
+      cout << "Congrats! You've done all your tasks for now." << endl;
+      return;
+    }
     cout << "All Tasks:" << endl;
     for (const auto* t : tasks_list) {
       cout << "ID: " << t->id << ", Title: " << t->title << ", State: " << t->state << endl;
@@ -55,7 +70,7 @@ public:
 };
 
 void display_menu() {
-  cout << "1. add\n" << "2. rm\n" << "3. display\n" << "0. exit" << endl;
+  cout << "1. add\n" << "2. rm\n" << "3. display\n" << "4. stats\n" << "0. exit" << endl;
   cout << "enter your choice: ";
 }
 
@@ -73,6 +88,10 @@ void del(TodoList& todo_list) {
   todo_list.del_task(id);
 }
 
+void stats(TodoList& todo_list) {
+  cout << "N.O. tasks: " << todo_list.get_tasks_count() << endl;
+}
+
 int main() {
   int choice;
   TodoList todo_list;
@@ -86,15 +105,16 @@ int main() {
       case 1: add(todo_list); break;
       case 2: del(todo_list); break;
       case 3: todo_list.display_tasks(); break;
+      case 4: stats(todo_list);
       case 0: break;
-      default: cout << "Invalid choice" << endl;
+      default: cout << "Invalid choice." << endl;
     }
 
     cout << endl;
 
   } while(choice != 0);
 
-  cout << "bye!";
+  cout << "bye!" << endl;
 
   return 0;
 }
