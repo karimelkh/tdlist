@@ -11,10 +11,10 @@ simple todo list CLI app
 - [ ] add the **edit** option.
 - [X] bug: deleting a task that dosn't exist
 - [ ] change task state (e.g., Completed, Canceled, ...)
-- [ ] enhance display/output formatting: display table function
+- [X] enhance display/output formatting: display table function
 - [ ] save the tasks in a file
 - [ ] due date handling
-- [ ] make a command line prompt
+- [ ] make a command-line prompt
 
 
 ## CONTANCT
