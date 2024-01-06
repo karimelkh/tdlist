@@ -1,20 +1,33 @@
-# todo-cli-app
+# TODO CLI APP
 
 simple todo list CLI app
 
 
-## TODOs
+## FEATURES
+
+1. add tasks
+2. delete tasks
+3. display tasks
+4. _**more to come**_
+
+
+## TODOS
+
+### todo:
+
+- [ ] add the **edit** option.
+- [ ] change task state (e.g., Completed, Canceled, ...)
+- [ ] save the tasks in a file
+- [ ] due date handling
+- [ ] make a command-line prompt
+
+### done:
 
 - [X] use stack STL instead of mine.
 - [X] enhance code readability
 - [X] add **stats** option.
-- [ ] add the **edit** option.
 - [X] bug: deleting a task that dosn't exist
-- [ ] change task state (e.g., Completed, Canceled, ...)
 - [X] enhance display/output formatting: display table function
-- [ ] save the tasks in a file
-- [ ] due date handling
-- [ ] make a command-line prompt
 
 
 ## CONTANCT
