@@ -10,6 +10,21 @@ using namespace std;
 #define ABANDONED_STATE "Canceled"
 #define STALLED_STATE "Blocked"
 
+#define TBL_SEPERATOR "+----+---------------+-------------------------+------------+-------------+"
+//                    "| ID |     Title     |       Description       |  Due date  |    State    |"
+//                    "+----+---------------+-------------------------+------------+-------------+"
+
+#define DESC_CHAR_LMT 20 // 25
+#define TITLE_CHAR_LMT 10 // 15
+
+void print_max(string str, int max) {
+  if(str.length() <= max) {
+    cout << str;
+    for(int i=0; i < max - str.length() + 3; i++) cout << " ";
+  }
+  else cout << str.substr(0, max) << "...";
+}
+
 struct task {
   string title, desc, state, due_date;
   int id;
@@ -22,11 +37,10 @@ private:
 
   list<task*> tasks_list;
   int cur_id = 0;
-  int tasks_count = 0;
 
 public:
 
-  int get_tasks_count() {return tasks_count;}
+  int get_tasks_count() {return tasks_list.size();}
 
   task* find_task(int task_id) {
     if(tasks_list.empty()) return nullptr;
@@ -39,7 +53,6 @@ public:
   void add_task(string task_title) {
     task* t = new task(task_title, "none", PENDING_STATE, "today", cur_id++);
     tasks_list.push_back(t);
-    tasks_count++ ;
   }
   
   void del_task(int task_id) {
@@ -54,7 +67,6 @@ public:
     }
     tasks_list.remove(t);
     delete t;
-    tasks_count-- ;
   }
 
   void display_tasks() {
@@ -62,9 +74,21 @@ public:
       cout << "Congrats! You've done all your tasks for now." << endl;
       return;
     }
-    cout << "All Tasks:" << endl;
+    cout << TBL_SEPERATOR << endl;
+    cout << "| ID |     Title     |       Description       |  Due date  |    State    |" << endl;                              
+    cout << TBL_SEPERATOR << endl;
     for (const auto* t : tasks_list) {
-      cout << "ID: " << t->id << ", Title: " << t->title << ", State: " << t->state << endl;
+      if(t->id < 10) cout << "| 0" << t->id << " | ";
+      else cout << "| " << t->id << " | ";
+      print_max(t->title, TITLE_CHAR_LMT);
+      cout << " | ";
+      print_max(t->desc, DESC_CHAR_LMT);
+      cout << " | ";
+      print_max(t->due_date, 7);
+      cout << " | ";
+      print_max(t->state, 8);
+      cout << " |" << endl;
+      cout << TBL_SEPERATOR << endl;
     }
   }
 };
