@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <iostream>
 #include <list>
 #include <string>
@@ -11,7 +12,7 @@ using namespace std;
 #define STALLED_STATE "Blocked"
 
 #define TBL_SEPERATOR "+----+---------------+-------------------------+------------+-------------+"
-//                    "| ID |     Title     |       Description       |  Due date  |    State    |"
+#define TBL_HEADER    "| ID |     Title     |       Description       |  Due date  |    State    |"
 //                    "+----+---------------+-------------------------+------------+-------------+"
 
 #define DESC_CHAR_LMT 20 // 25
@@ -20,7 +21,7 @@ using namespace std;
 void print_max(string str, int max) {
   if(str.length() <= max) {
     cout << str;
-    for(int i=0; i < max - str.length() + 3; i++) cout << " ";
+    for(int i=0; i<max-str.length()+3; i++) cout << " ";
   }
   else cout << str.substr(0, max) << "...";
 }
@@ -50,8 +51,8 @@ public:
     return nullptr;
   }
 
-  void add_task(string task_title) {
-    task* t = new task(task_title, "none", PENDING_STATE, "today", cur_id++);
+  void add_task(string title, string desc = "none", string state = PENDING_STATE, string ddate = "today") {
+    task* t = new task(title, desc, state, ddate, cur_id++);
     tasks_list.push_back(t);
   }
   
@@ -75,7 +76,7 @@ public:
       return;
     }
     cout << TBL_SEPERATOR << endl;
-    cout << "| ID |     Title     |       Description       |  Due date  |    State    |" << endl;                              
+    cout << TBL_HEADER << endl;
     cout << TBL_SEPERATOR << endl;
     for (const auto* t : tasks_list) {
       if(t->id < 10) cout << "| 0" << t->id << " | ";
@@ -91,10 +92,29 @@ public:
       cout << TBL_SEPERATOR << endl;
     }
   }
+
+  /*
+   * t => title
+   * d => description
+   * s => state
+   * f => due date (final date)
+   */
+  void edit_task(int task_id, string new_value, const char opt = 't') {
+    task* t = find_task(task_id);
+    if(t == nullptr) return;
+    switch(opt) {
+      case 't': t->title = new_value; break;
+      case 'd': t->desc = new_value; break;
+      case 's': t->state = new_value; break;
+      case 'f': t->due_date = new_value; break;
+      default: cout << "Invalid choice." << endl; return;
+    }
+    cout << "task " << task_id << "edited successfully.";
+  }
 };
 
 void display_menu() {
-  cout << "1. add\n" << "2. rm\n" << "3. display\n" << "4. stats\n" << "0. exit" << endl;
+  cout << "1. add\n" << "2. rm\n" << "3. display\n" << "4. stats\n"<< "5. edit\n" << "0. exit" << endl;
   cout << "enter your choice: ";
 }
 
@@ -116,6 +136,37 @@ void stats(TodoList& todo_list) {
   cout << "N.O. tasks: " << todo_list.get_tasks_count() << endl;
 }
 
+void edit(TodoList& todo_list) {
+  int id;
+  string new_value;
+  cout << "ID: ";
+  cin >> id;
+  cout << "what are you want to edit? (t)itle, (d)escription, (s)tate, (f) due date or (c)ancel?";
+  const char opt = getchar(); // bug to fix
+  if(opt == 'c') return;
+  if(opt == 's') {
+    cout << "1. " << PENDING_STATE << endl;
+    cout << "2. " << ACTIVE_STATE << endl;
+    cout << "3. " << FINISHED_STATE << endl;
+    cout << "4. " << ABANDONED_STATE << endl;
+    cout << "5. " << STALLED_STATE << endl;
+    cout << "> ";
+    const char c = getchar();
+    switch(c) {
+      case '1': new_value = PENDING_STATE; break;
+      case '2': new_value = ACTIVE_STATE; break;
+      case '3': new_value = FINISHED_STATE; break;
+      case '4': new_value = ABANDONED_STATE; break;
+      case '5': new_value = STALLED_STATE; break;
+      default: cout << "Invalid choice."; break;
+    }
+  } else {
+    cout << "the new value: ";
+    cin >> new_value;
+  }
+  todo_list.edit_task(id, new_value, opt);
+}
+
 int main() {
   int choice;
   TodoList todo_list;
@@ -130,6 +181,7 @@ int main() {
       case 2: del(todo_list); break;
       case 3: todo_list.display_tasks(); break;
       case 4: stats(todo_list);
+      case 5: edit(todo_list);
       case 0: break;
       default: cout << "Invalid choice." << endl;
     }
