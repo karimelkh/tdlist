@@ -18,7 +18,7 @@ simple todo list CLI app
 
 - [ ] change task state (e.g., Completed, Canceled, ...)
 - [ ] save the tasks in a file
-- [ ] due date handling
+- [ ] due date handling: check date format ...
 - [ ] make a command-line prompt
 - [ ] secure the tasks with username-password authentication
 
