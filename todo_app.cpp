@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include <string>
+#include <limits>
 
 using namespace std;
 
@@ -25,6 +26,8 @@ void print_max(string str, int max) {
   }
   else cout << str.substr(0, max) << "...";
 }
+
+void clear_buffer() { cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
 
 struct task {
   string title, desc, state, due_date;
@@ -109,7 +112,7 @@ public:
       case 'f': t->due_date = new_value; break;
       default: cout << "Invalid choice." << endl; return;
     }
-    cout << "task " << task_id << "edited successfully.";
+    cout << "task " << task_id << " edited successfully.";
   }
 };
 
@@ -121,7 +124,7 @@ void display_menu() {
 void add(TodoList& todo_list) {
   string title;
   cout << "Title: ";
-  cin >> title;
+  getline(cin, title);
   todo_list.add_task(title);
 }
 
@@ -129,6 +132,7 @@ void del(TodoList& todo_list) {
   int id;
   cout << "ID: ";
   cin >> id;
+  clear_buffer();
   todo_list.del_task(id);
 }
 
@@ -141,8 +145,11 @@ void edit(TodoList& todo_list) {
   string new_value;
   cout << "ID: ";
   cin >> id;
-  cout << "what are you want to edit? (t)itle, (d)escription, (s)tate, (f) due date or (c)ancel?";
-  const char opt = getchar(); // bug to fix
+  clear_buffer();
+  cout << "what are you want to edit? (t)itle, (d)escription, (s)tate, (f) due date or (c)ancel?\n>";
+  char opt;
+  cin >> opt;
+  clear_buffer();
   if(opt == 'c') return;
   if(opt == 's') {
     cout << "1. " << PENDING_STATE << endl;
@@ -150,19 +157,23 @@ void edit(TodoList& todo_list) {
     cout << "3. " << FINISHED_STATE << endl;
     cout << "4. " << ABANDONED_STATE << endl;
     cout << "5. " << STALLED_STATE << endl;
+    cout << "6. other" << endl;
     cout << "> ";
-    const char c = getchar();
+    char c;
+    cin >> c;
+    clear_buffer();
     switch(c) {
       case '1': new_value = PENDING_STATE; break;
       case '2': new_value = ACTIVE_STATE; break;
       case '3': new_value = FINISHED_STATE; break;
       case '4': new_value = ABANDONED_STATE; break;
       case '5': new_value = STALLED_STATE; break;
-      default: cout << "Invalid choice."; break;
+      case '6': new_value = c; break;
+      default: cout << "Invalid choice"; break;
     }
   } else {
     cout << "the new value: ";
-    cin >> new_value;
+   getline(cin, new_value);
   }
   todo_list.edit_task(id, new_value, opt);
 }
@@ -175,6 +186,7 @@ int main() {
 
     display_menu();
     cin >> choice;
+    clear_buffer();    
 
     switch(choice) {
       case 1: add(todo_list); break;
