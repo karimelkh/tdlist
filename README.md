@@ -42,5 +42,5 @@ simple todo list CLI app
 
 ## CONTANCT
 
-If you have any questions, feedback, or suggestions, feel free to [send an email](mailto:karimelkhanoufi22@gmail.com).
+If you have any questions, feedback, or suggestions, feel free to [send an email](mailto:karimelkhanoufi22+github@gmail.com).
 
