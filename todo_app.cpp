@@ -2,8 +2,22 @@
 #include <list>
 #include <string>
 #include <limits>
+#include <sstream>
+#include <vector>
 
 using namespace std;
+
+#define DOTES_LEN 3
+
+#define DATE_LEN 10
+#define DAY_LEN 2
+#define MO_LEN 2
+#define YR_LEN 4
+
+#define BEG_DAY 1
+#define END_DAY 31
+#define BEG_MO 1
+#define END_MO 12
 
 #define PENDING_STATE "To-Do"
 #define ACTIVE_STATE "In Progress"
@@ -11,22 +25,40 @@ using namespace std;
 #define ABANDONED_STATE "Canceled"
 #define STALLED_STATE "Blocked"
 
-#define TBL_SEPERATOR "+----+---------------+-------------------------+------------+-------------+"
-#define TBL_HEADER    "| ID |     Title     |       Description       |  Due date  |    State    |"
-//                    "+----+---------------+-------------------------+------------+-------------+"
+#define TBL_SEPERATOR "+----+---------------+-------------------------+--------------+-------------+"
+#define TBL_HEADER    "| ID |     Title     |       Description       |   Due date   |    State    |"
+//                    "+----+---------------+-------------------------+--------------+-------------+"
 
 #define DESC_CHAR_LMT 20 // 25
-#define TITLE_CHAR_LMT 10 // 15
+#define TITLE_CHAR_LMT 10 // 
 
 void print_max(string str, int max) {
   if(str.length() <= max) {
     cout << str;
-    for(int i=0; i<max-str.length()+3; i++) cout << " ";
+    for(int i=0; i<max-str.length()+DOTES_LEN; i++) cout << " ";
   }
   else cout << str.substr(0, max) << "...";
 }
 
 void clear_buffer() { cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
+
+bool is_valid_date(string date) {
+  if(date.size() != DATE_LEN) return false;
+  vector<string> vdate;
+  string token;
+  istringstream iss(date);
+  while(getline(iss, token, '-')) { vdate.push_back(token); }
+  if(vdate.size() != 3) return false;
+  string d, m, y;
+  d = vdate.at(0);
+  m = vdate.at(1);
+  y = vdate.at(2);
+  if(d.size() != DAY_LEN || m.size() != MO_LEN || y.size() != YR_LEN) return false;
+  if (!isdigit(d[0]) || !isdigit(m[0]) || !isdigit(y[0])) return false;
+  if(stoi(d) < BEG_DAY || stoi(d) > END_DAY || stoi(m) < BEG_MO || stoi(m) > END_MO) return false;
+  if(stoi(y) > 0) return true;
+  return true;
+}
 
 struct task {
   string title, desc, state, due_date;
@@ -77,9 +109,7 @@ public:
       cout << "Congrats! You've done all your tasks for now." << endl;
       return;
     }
-    cout << TBL_SEPERATOR << endl;
-    cout << TBL_HEADER << endl;
-    cout << TBL_SEPERATOR << endl;
+    cout << TBL_SEPERATOR << endl << TBL_HEADER << endl << TBL_SEPERATOR << endl;
     for (const auto* t : tasks_list) {
       if(t->id < 10) cout << "| 0" << t->id << " | ";
       else cout << "| " << t->id << " | ";
@@ -87,7 +117,7 @@ public:
       cout << " | ";
       print_max(t->desc, DESC_CHAR_LMT);
       cout << " | ";
-      print_max(t->due_date, 7);
+      print_max(t->due_date, 9); // 7
       cout << " | ";
       print_max(t->state, 8);
       cout << " |" << endl;
@@ -111,7 +141,7 @@ public:
       case 'f': t->due_date = new_value; break;
       default: cout << "Invalid choice." << endl; return;
     }
-    cout << "task " << task_id << " edited successfully.";
+    cout << "task " << task_id << " edited successfully." << endl;
   }
 };
 
@@ -145,11 +175,11 @@ void edit(TodoList& todo_list) {
   cout << "ID: ";
   cin >> id;
   clear_buffer();
-  cout << "what are you want to edit? (t)itle, (d)escription, (s)tate, (f) due date or (c)ancel?\n>";
+  cout << "what are you want to edit? (t)itle, (d)escription, (s)tate, (f) due date or (c)ancel?\n> ";
   char opt;
   cin >> opt;
   clear_buffer();
-  if(opt == 'c') return;
+  if(opt == 'c') { cout << "edit canceled" << endl; return; }
   if(opt == 's') {
     cout << "1. " << PENDING_STATE << endl;
     cout << "2. " << ACTIVE_STATE << endl;
@@ -170,9 +200,18 @@ void edit(TodoList& todo_list) {
       case '6': new_value = c; break;
       default: cout << "Invalid choice"; break;
     }
+  } else if(opt == 'f') {
+    do {
+      cout << "new due date (dd-mm-yyyy)\n> ";
+      cin >> new_value;
+      clear_buffer();
+      if(is_valid_date(new_value)) break;
+      cout << "Invalid date." << endl;
+    } while(1);
   } else {
     cout << "the new value: ";
    getline(cin, new_value);
+   clear_buffer();
   }
   todo_list.edit_task(id, new_value, opt);
 }
@@ -197,7 +236,7 @@ int main() {
       default: cout << "Invalid choice." << endl;
     }
 
-    cout << endl;
+    //cout << endl;
 
   } while(choice != 0);
 
