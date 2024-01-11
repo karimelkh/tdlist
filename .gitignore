@@ -2,6 +2,9 @@
 .vscode/
 .config/
 
+# test files
+test
+
 # Prerequisites
 *.d
 
