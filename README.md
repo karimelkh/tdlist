@@ -15,11 +15,13 @@ simple todo list CLI app
 ## TODOS
 
 ### todo:
-
+- [ ] re-structure the project: make .h/.hpp files
+- [ ] add **Makefile**
+- [ ] add **done_task** function
+- [ ] add **restore_task** function
 - [ ] remove **"magic numbers"**
 - [ ] enhance table formatting
 - [ ] save the tasks in a file
-- [ ] due date handling: check date format ...
 - [ ] make a command-line prompt
 - [ ] secure the tasks with username-password authentication
 - [ ] long list of task(s)
@@ -28,6 +30,7 @@ simple todo list CLI app
 
 ### done:
 
+- [X] due date handling: check date format ...
 - [X] change task state (e.g., Completed, Canceled, ...)
 - [X] add the **edit** option.
 - [X] use stack STL instead of mine.
