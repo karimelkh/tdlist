@@ -16,14 +16,19 @@ simple todo list CLI app
 
 ### todo:
 
-- [ ] change task state (e.g., Completed, Canceled, ...)
+- [ ] remove **"magic numbers"**
+- [ ] enhance table formatting
 - [ ] save the tasks in a file
 - [ ] due date handling: check date format ...
 - [ ] make a command-line prompt
 - [ ] secure the tasks with username-password authentication
+- [ ] long list of task(s)
+- [ ] list by filters: state, date, ...
+- [ ] add more stats
 
 ### done:
 
+- [X] change task state (e.g., Completed, Canceled, ...)
 - [X] add the **edit** option.
 - [X] use stack STL instead of mine.
 - [X] enhance code readability
