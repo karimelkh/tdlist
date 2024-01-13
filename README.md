@@ -15,10 +15,12 @@ simple todo list CLI app
 ## TODOS
 
 ### todo:
+
+- [ ] enhance `is_valide_date` function
 - [ ] re-structure the project: make .h/.hpp files
 - [ ] add **Makefile**
-- [ ] add **done_task** function
-- [ ] add **restore_task** function
+- [ ] add `done_task` function
+- [ ] add `restore_task` function
 - [ ] remove **"magic numbers"**
 - [ ] enhance table formatting
 - [ ] save the tasks in a file
