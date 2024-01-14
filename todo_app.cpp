@@ -35,28 +35,29 @@ using namespace std;
 void print_max(string str, int max) {
   if(str.length() <= max) {
     cout << str;
-    for(int i=0; i<max-str.length()+DOTES_LEN; i++) cout << " ";
+    int rest_of_cell = max - str.length() + DOTES_LEN;
+    for(int i=0; i<rest_of_cell; i++) cout << " ";
   }
   else cout << str.substr(0, max) << "...";
 }
 
 void clear_buffer() { cin.ignore(numeric_limits<streamsize>::max(), '\n'); }
 
-bool is_valid_date(string date) {
-  if(date.size() != DATE_LEN) return false;
+bool is_valid_date(string& date) {
+  if(date.size() != DATE_LEN || date[2] != '-' || date[5] != '-') return false;
   vector<string> vdate;
   string token;
   istringstream iss(date);
   while(getline(iss, token, '-')) { vdate.push_back(token); }
   if(vdate.size() != 3) return false;
-  string d, m, y;
-  d = vdate.at(0);
-  m = vdate.at(1);
-  y = vdate.at(2);
+  string& d = vdate.at(0);
+  string& m = vdate.at(1);
+  string& y = vdate.at(2);
+  int int_d = stoi(d), int_m = stoi(m), int_y = stoi(y);
   if(d.size() != DAY_LEN || m.size() != MO_LEN || y.size() != YR_LEN) return false;
   if (!isdigit(d[0]) || !isdigit(m[0]) || !isdigit(y[0])) return false;
-  if(stoi(d) < BEG_DAY || stoi(d) > END_DAY || stoi(m) < BEG_MO || stoi(m) > END_MO) return false;
-  if(stoi(y) > 0) return true;
+  if(int_d < BEG_DAY || int_d > END_DAY || int_m < BEG_MO || int_m > END_MO) return false;
+  if(int_y < 0) return false;
   return true;
 }
 
