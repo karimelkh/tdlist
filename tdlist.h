@@ -87,12 +87,12 @@ public:
   }
 };
 
-bool is_valid_date(string& date) {
+bool is_valid_date(std::string& date) {
   if(date.size() != DATE_LEN || date[2] != '-' || date[5] != '-') return false;
-  vector<string> vdate;
+  std::vector<std::string> vdate;
   std::string token;
-  istringstream iss(date);
-  while(getline(iss, token, '-')) { vdate.push_back(token); }
+  std::istringstream iss(date);
+  while(std::getline(iss, token, '-')) { vdate.push_back(token); }
   if(vdate.size() != 3) return false;
   std::string& d = vdate.at(0);
   std::string& m = vdate.at(1);
@@ -106,50 +106,50 @@ bool is_valid_date(string& date) {
 }
 
 void display_menu() {
-  std::cout << "1. add\n" << "2. rm\n" << "3. display\n" << "4. stats\n"<< "5. edit\n" << "0. exit" << endl;
+  std::cout << "1. add\n" << "2. rm\n" << "3. display\n" << "4. stats\n"<< "5. edit\n" << "0. exit" << std::endl;
   std::cout << "enter your choice: ";
 }
 
 void add(tdlist& todo_list) {
   std::string title;
   std::cout << "Title: ";
-  getline(cin, title);
+  getline(std::cin, title);
   todo_list.add_task(title);
 }
 
 void del(tdlist& todo_list) {
   int id;
   std::cout << "ID: ";
-  cin >> id;
+  std::cin >> id;
   clear_buffer();
   todo_list.del_task(id);
 }
 
 void stats(tdlist& todo_list) {
-  std::cout << "N.O. tasks: " << todo_list.get_tasks_count() << endl;
+  std::cout << "N.O. tasks: " << todo_list.get_tasks_count() << std::endl;
 }
 
 void edit(tdlist& todo_list) {
   int id;
   std::string new_value;
   std::cout << "ID: ";
-  cin >> id;
+  std::cin >> id;
   clear_buffer();
   std::cout << "what are you want to edit? (t)itle, (d)escription, (s)tate, (f) due date or (c)ancel?\n> ";
   char opt;
-  cin >> opt;
+  std::cin >> opt;
   clear_buffer();
-  if(opt == 'c') { std::cout << "edit canceled" << endl; return; }
+  if(opt == 'c') { std::cout << "edit canceled" << std::endl; return; }
   if(opt == 's') {
-    std::cout << "1. " << PENDING_STATE << endl;
-    std::cout << "2. " << ACTIVE_STATE << endl;
-    std::cout << "3. " << FINISHED_STATE << endl;
-    std::cout << "4. " << ABANDONED_STATE << endl;
-    std::cout << "5. " << STALLED_STATE << endl;
-    std::cout << "6. other" << endl;
+    std::cout << "1. " << PENDING_STATE << std::endl;
+    std::cout << "2. " << ACTIVE_STATE << std::endl;
+    std::cout << "3. " << FINISHED_STATE << std::endl;
+    std::cout << "4. " << ABANDONED_STATE << std::endl;
+    std::cout << "5. " << STALLED_STATE << std::endl;
+    std::cout << "6. other" << std::endl;
     std::cout << "> ";
     char c;
-    cin >> c;
+    std::cin >> c;
     clear_buffer();
     switch(c) {
       case '1': new_value = PENDING_STATE; break;
@@ -163,14 +163,14 @@ void edit(tdlist& todo_list) {
   } else if(opt == 'f') {
     do {
       std::cout << "new due date (dd-mm-yyyy)\n> ";
-      cin >> new_value;
+      std::cin >> new_value;
       clear_buffer();
       if(is_valid_date(new_value)) break;
-      std::cout << "Invalid date." << endl;
+      std::cout << "Invalid date." << std::endl;
     } while(1);
   } else {
     std::cout << "the new value: ";
-   getline(cin, new_value);
+   getline(std::cin, new_value);
    clear_buffer();
   }
   todo_list.edit_task(id, new_value, opt);

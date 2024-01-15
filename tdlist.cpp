@@ -22,8 +22,6 @@ int main() {
       default: cout << "Invalid choice." << endl;
     }
 
-    //cout << endl;
-
   } while(choice != 0);
 
   cout << "bye!" << endl;
