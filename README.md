@@ -1,4 +1,4 @@
-# TODO CLI APP
+# TDLIST
 
 simple todo list CLI app
 
