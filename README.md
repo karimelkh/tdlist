@@ -16,7 +16,6 @@ simple todo list CLI app
 
 ### todo:
 
-- [ ] add **Makefile**
 - [ ] add `done_task` function
 - [ ] add `restore_task` function
 - [ ] remove **"magic numbers"**
@@ -30,6 +29,7 @@ simple todo list CLI app
 
 ### done:
 
+- [X] add **Makefile**
 - [X] re-structure the project: make .h/.hpp files
 - [X] enhance `is_valide_date` function
 - [X] due date handling: check date format ...
