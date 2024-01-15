@@ -16,8 +16,6 @@ simple todo list CLI app
 
 ### todo:
 
-- [ ] enhance `is_valide_date` function
-- [ ] re-structure the project: make .h/.hpp files
 - [ ] add **Makefile**
 - [ ] add `done_task` function
 - [ ] add `restore_task` function
@@ -32,6 +30,8 @@ simple todo list CLI app
 
 ### done:
 
+- [X] re-structure the project: make .h/.hpp files
+- [X] enhance `is_valide_date` function
 - [X] due date handling: check date format ...
 - [X] change task state (e.g., Completed, Canceled, ...)
 - [X] add the **edit** option.
