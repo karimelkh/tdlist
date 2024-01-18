@@ -1,6 +1,4 @@
-#include "tdlist.h"
-
-using namespace std;
+#include "core/tdlist.h"
 
 int main() {
   int choice;
@@ -9,7 +7,7 @@ int main() {
   do {
 
     display_menu();
-    cin >> choice;
+    std::cin >> choice;
     clear_buffer();    
 
     switch(choice) {
@@ -19,12 +17,13 @@ int main() {
       case 4: stats(todo_list);
       case 5: edit(todo_list);
       case 0: break;
-      default: cout << "Invalid choice." << endl;
+      default: std::cout << "Invalid choice." << std::endl;
     }
 
   } while(choice != 0);
 
-  cout << "bye!" << endl;
+  std::cout << "bye!" << std::endl;
 
   return 0;
 }
+
