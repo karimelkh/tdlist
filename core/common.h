@@ -47,6 +47,8 @@
 #define DESC_CHAR_LMT 20 // 25
 #define TITLE_CHAR_LMT 10 // 
 
+#define 
+
 void clear_buffer() { std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); }
 
 void print_max(std::string str, int max) {

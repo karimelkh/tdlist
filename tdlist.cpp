@@ -1,6 +1,19 @@
 #include "core/tdlist.h"
 
-int main() {
+int main(int argc, char* argv[]) {
+  if(argc == 1) {
+    string cmd;
+    do {
+      std::cout << "tdlist> ";
+      std::getline(std::cin, cmd);
+    } while (cmd != "");
+  }
+}
+
+int main(int argc, char* argv[]) {
+
+  if(argc == 1) help();
+
   int choice;
   tdlist todo_list;
 
@@ -8,7 +21,7 @@ int main() {
 
     display_menu();
     std::cin >> choice;
-    clear_buffer();    
+    clear_buffer();
 
     switch(choice) {
       case 1: add(todo_list); break;

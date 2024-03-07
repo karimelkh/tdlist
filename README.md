@@ -1,6 +1,6 @@
 # TDLIST
 
-simple todo list CLI app
+command line app for managing tasks.
 
 
 ## FEATURES
@@ -16,6 +16,7 @@ simple todo list CLI app
 
 ### todo:
 
+- [ ] add `help` function
 - [ ] add `done_task` function
 - [ ] add `restore_task` function
 - [ ] remove **"magic numbers"**

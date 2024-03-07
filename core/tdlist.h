@@ -110,6 +110,12 @@ void display_menu() {
   std::cout << "enter your choice: ";
 }
 
+void help() {
+  std::cout << "tdlist is a command line app for managing tasks." << std::endl
+            << "usage: " << std::endl
+            << "" << std::endl;
+}
+
 void add(tdlist& todo_list) {
   std::string title;
   std::cout << "Title: ";
@@ -176,4 +182,4 @@ void edit(tdlist& todo_list) {
   todo_list.edit_task(id, new_value, opt);
 }
 
-#endif
+#endif // TDLIST_H
