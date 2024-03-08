@@ -3,6 +3,23 @@
 command line app for managing tasks.
 
 
+## USAGE
+
+1. compilation:
+```sh
+make
+```
+2. running:
+```sh
+./tdlist
+```
+
+3. cleaning:
+```sh
+make clean
+```
+
+
 ## FEATURES
 
 1. add tasks
@@ -16,7 +33,7 @@ command line app for managing tasks.
 
 ### todo:
 
-- [ ] add `help` function
+- [ ] implement the `help` function
 - [ ] add `done_task` function
 - [ ] add `restore_task` function
 - [ ] remove **"magic numbers"**
@@ -31,6 +48,7 @@ command line app for managing tasks.
 ### done:
 
 - [X] add **Makefile**
+- [X] add `help` function
 - [X] re-structure the project: make .h/.hpp files
 - [X] enhance `is_valide_date` function
 - [X] due date handling: check date format ...
