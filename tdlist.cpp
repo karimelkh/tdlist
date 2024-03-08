@@ -1,15 +1,31 @@
 #include "core/tdlist.h"
 
-int main(int argc, char* argv[]) {
-  if(argc == 1) {
-    string cmd;
-    do {
-      std::cout << "tdlist> ";
-      std::getline(std::cin, cmd);
-    } while (cmd != "");
-  }
+int main(const int argc, const char* argv[]) {
+	if(argc == 1) { /* enter tdlist interface */ }
+	else if(argc > 5) { /* display HELP snd EXIT */ }
+	else { /* process arguments */ }
+	return 0;
 }
 
+/*
+int main(int argc, char* argv[]) {
+	if(argc == 1) {
+		std::string cmd;
+		do {
+			std::cout << "tdlist> ";
+			std::getline(std::cin, cmd);
+			if(cmd == "clear") system("clear");
+			else if(cmd == "exit" || cmd == "quit") {
+				std::cout << "bye!" << std::endl;
+				break;
+			}
+			else std::cout << cmd << std::endl;
+		} while (true);
+	} else {}
+}
+*/
+
+/*
 int main(int argc, char* argv[]) {
 
   if(argc == 1) help();
@@ -39,4 +55,4 @@ int main(int argc, char* argv[]) {
 
   return 0;
 }
-
+*/

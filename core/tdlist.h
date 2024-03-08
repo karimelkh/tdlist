@@ -1,6 +1,7 @@
 #ifndef TDLIST_H
 
 #include "common.h"
+#include "process.h"
 
 struct task {
   std::string title, desc, state, due_date;
@@ -31,7 +32,7 @@ public:
     task* t = new task(title, desc, state, ddate, cur_id++);
     tasks_list.push_back(t);
   }
-  
+
   void del_task(int task_id) {
     if(tasks_list.empty()) {
       std::cout << "You have nothing to delete." << std::endl;

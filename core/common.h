@@ -47,7 +47,7 @@
 #define DESC_CHAR_LMT 20 // 25
 #define TITLE_CHAR_LMT 10 // 
 
-#define 
+// #define 
 
 void clear_buffer() { std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); }
 
@@ -58,4 +58,8 @@ void print_max(std::string str, int max) {
     for(int i=0; i<rest_of_cell; i++) std::cout << " ";
   }
   else std::cout << str.substr(0, max) << "...";
+}
+
+namespace Display {
+	void help() { /* cmd desc + usage + version */ }
 }
