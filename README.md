@@ -5,16 +5,27 @@ command line app for managing tasks.
 
 ## USAGE
 
-1. compilation:
+* compilation:
 ```sh
-make
-```
-2. running:
-```sh
-./tdlist
+	make
 ```
 
-3. cleaning:
+* installing:
+```sh
+	sudo make install
+```
+
+* uninstalling:
+```sh
+	sudo make uninstall
+```
+
+* running:
+```sh
+	tdlist
+```
+
+* cleaning:
 ```sh
 make clean
 ```
