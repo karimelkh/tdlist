@@ -1,13 +1,12 @@
 #ifndef TDLIST_H
 
 #include "common.h"
-#include "process.h"
 
 struct task {
-  std::string title, desc, state, due_date;
+  std::string title, desc, due_date, state;
   int id;
-  task(const std::string& task_title, const std::string& task_desc, const std::string& task_state, const std::string& task_due_date, int task_id)
-  : title(task_title), desc(task_desc), state(task_state), due_date(task_due_date), id(task_id) {}
+  task(const std::string& task_title, const std::string& task_desc, const std::string& task_due_date, const std::string& task_state, int task_id)
+  : title(task_title), desc(task_desc), due_date(task_due_date), state(task_state), id(task_id) {}
 };
 
 class tdlist {
@@ -18,20 +17,19 @@ private:
 
 public:
 
-  int get_tasks_count() {return tasks_list.size();}
+  int get_tasks_count() { return tasks_list.size(); }
 
   task* find_task(int task_id) {
     if(tasks_list.empty()) return nullptr;
-    for(const auto& task : tasks_list) {
-      if(task->id == task_id) return task;
-    }
+    for(const auto& task : tasks_list)
+		if(task->id == task_id) return task;
     return nullptr;
   }
 
-  void add_task(std::string title, std::string desc = "none", std::string state = PENDING_STATE, std::string ddate = "today") {
-    task* t = new task(title, desc, state, ddate, cur_id++);
-    tasks_list.push_back(t);
-  }
+	void add_task(std::string title, std::string desc = "none", std::string ddate = "tomorrow", std::string state = PENDING_STATE) {
+		task* t = new task(title, desc, ddate, state, cur_id++);
+		tasks_list.push_back(t);
+	}
 
   void del_task(int task_id) {
     if(tasks_list.empty()) {

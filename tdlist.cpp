@@ -1,9 +1,16 @@
 #include "core/tdlist.h"
+#include "core/process.h"
 
-int main(const int argc, const char* argv[]) {
-	if(argc == 1) { /* enter tdlist interface */ }
-	else if(argc > 5) { /* display HELP snd EXIT */ }
-	else { /* process arguments */ }
+namespace process = Process;
+
+int main(int argc, char* argv[]) {
+	// if(argc == 1) { /* enter tdlist interface */ }
+	// else if(argc > 5) { /* display HELP snd EXIT */ }
+	// else
+	// std::cout << argc << std::endl;
+	// process::print_args(argc, argv);
+	tdlist list;
+	process::all_args(argc, argv, list);
 	return 0;
 }
 
