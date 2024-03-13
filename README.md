@@ -3,6 +3,20 @@
 command line app for managing tasks.
 
 
+## SOURCE CODE TREE
+
+tdlist
+├── core
+│   ├── common.h
+│   ├── process.h
+│   └── tdlist.h
+├── LICENSE
+├── Makefile
+├── README.md
+└── tdlist.cpp
+
+
+
 ## USAGE
 
 * compilation:
@@ -76,4 +90,14 @@ make clean
 ## CONTANCT
 
 If you have any questions, feedback, or suggestions, feel free to [send an email](mailto:karimelkhanoufi22+github@gmail.com).
+
+tdlist
+├── core
+│   ├── common.h
+│   ├── process.h
+│   └── tdlist.h
+├── LICENSE
+├── Makefile
+├── README.md
+└── tdlist.cpp
 
