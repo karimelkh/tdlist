@@ -1,14 +1,17 @@
 CC=g++
-CFLAGS=-c -Wall
+CFLAGS = -c -Wall -Wextra -std=c++17
+
+EXEC=tdlist
+
 
 all:
 	$(CC) tdlist.cpp -o tdlist
 
 install:
-	sudo cp ./tdlist /bin/
+	sudo cp ./$(EXEC) /bin/
 
 uninstall:
-	sudo rm /bin/tdlist
-
+	sudo rm /bin/$(EXEC)
+	
 clean:
-	rm -rf tdlist
+	rm -rf $(EXEC)
