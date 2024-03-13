@@ -5,6 +5,7 @@ command line app for managing tasks.
 
 ## SOURCE CODE TREE
 
+```sh
 tdlist
 ├── core
 │   ├── common.h
@@ -14,7 +15,7 @@ tdlist
 ├── Makefile
 ├── README.md
 └── tdlist.cpp
-
+```
 
 
 ## USAGE
@@ -90,14 +91,3 @@ make clean
 ## CONTANCT
 
 If you have any questions, feedback, or suggestions, feel free to [send an email](mailto:karimelkhanoufi22+github@gmail.com).
-
-tdlist
-├── core
-│   ├── common.h
-│   ├── process.h
-│   └── tdlist.h
-├── LICENSE
-├── Makefile
-├── README.md
-└── tdlist.cpp
-
