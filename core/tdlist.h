@@ -31,18 +31,19 @@ public:
 		tasks_list.push_back(t);
 	}
 
-  void del_task(int task_id) {
+  int del_task(int task_id) {
     if(tasks_list.empty()) {
       std::cout << "You have nothing to delete." << std::endl;
-      return;
+      return FAI_RES;
     }
     task* t = find_task(task_id);
     if(t == nullptr) {
       std::cout << "Task not found." << std::endl;
-      return;
+      return FAI_RES;
     }
     tasks_list.remove(t);
     delete t;
+    return SUC_RES;
   }
 
   void display_tasks() {
@@ -72,21 +73,22 @@ public:
    * s => state
    * f => due date (final date)
    */
-  void edit_task(int task_id, std::string new_value, const char opt = 't') {
+  int edit_task(int task_id, std::string new_value, const char opt = 't') {
     task* t = find_task(task_id);
-    if(t == nullptr) return;
+    if(t == nullptr) return FAI_RES;
     switch(opt) {
       case 't': t->title = new_value; break;
       case 'd': t->desc = new_value; break;
       case 's': t->state = new_value; break;
       case 'f': t->due_date = new_value; break;
-      default: std::cout << "Invalid choice." << std::endl; return;
+      default: std::cout << "Invalid choice." << std::endl; return FAI_RES;
     }
     std::cout << "task " << task_id << " edited successfully." << std::endl;
+    return SUC_RES;
   }
 };
 
-bool is_valid_date(std::string& date) {
+bool is_valid_date(std::string date) {
   if(date.size() != DATE_LEN || date[2] != '-' || date[5] != '-') return false;
   std::vector<std::string> vdate;
   std::string token;

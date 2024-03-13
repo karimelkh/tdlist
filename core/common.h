@@ -22,6 +22,14 @@
 #include <vector>
 #endif
 
+#ifndef CSTDLIB
+#include <cstdlib>
+#endif
+
+#ifndef CSTRING
+#include <cstring>
+#endif
+
 #define DOTES_LEN 3
 
 #define DATE_LEN 10
@@ -47,6 +55,9 @@
 #define DESC_CHAR_LMT 20 // 25
 #define TITLE_CHAR_LMT 10 // 
 
+#define SUC_RES 1
+#define FAI_RES 0
+
 // #define 
 
 void clear_buffer() { std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); }
@@ -58,6 +69,10 @@ void print_max(std::string str, int max) {
     for(int i=0; i<rest_of_cell; i++) std::cout << " ";
   }
   else std::cout << str.substr(0, max) << "...";
+}
+
+void log_msg(std::string message) {
+  std::cout << message << std::endl;
 }
 
 namespace Display {

@@ -10,9 +10,43 @@ int main(int argc, char* argv[]) {
 	// std::cout << argc << std::endl;
 	// process::print_args(argc, argv);
 	tdlist list;
+	for(int i=0; i<10; i++)
+		list.add_task("title no " + std::to_string(i));
 	process::all_args(argc, argv, list);
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 int main(int argc, char* argv[]) {
