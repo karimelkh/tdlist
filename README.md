@@ -7,22 +7,22 @@ command line app for managing tasks.
 
 * compilation:
 ```sh
-	make
+make
 ```
 
 * installing:
 ```sh
-	sudo make install
+sudo make install
 ```
 
 * uninstalling:
 ```sh
-	sudo make uninstall
+sudo make uninstall
 ```
 
 * running:
 ```sh
-	tdlist
+tdlist
 ```
 
 * cleaning:
@@ -49,12 +49,13 @@ make clean
 - [ ] add `restore_task` function
 - [ ] remove **"magic numbers"**
 - [ ] enhance table formatting
-- [ ] save the tasks in a file
+- [ ] handle the storage of tasks: save the tasks in a file
 - [ ] make a command-line prompt
 - [ ] secure the tasks with username-password authentication
 - [ ] long list of task(s)
 - [ ] list by filters: state, date, ...
 - [ ] add more stats
+- [ ] implement the **areas** (or workspaces, groups, ...): for separating tasks.
 
 ### done:
 
