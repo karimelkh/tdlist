@@ -20,12 +20,12 @@ tdlist
 
 ## USAGE
 
-* compilation:
+* compiling:
 ```sh
 make
 ```
 
-* installing:
+* compiling and installing:
 ```sh
 sudo make install
 ```

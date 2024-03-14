@@ -7,7 +7,7 @@ EXEC=tdlist
 all:
 	$(CC) tdlist.cpp -o tdlist
 
-install:
+install: all
 	sudo cp ./$(EXEC) /bin/
 
 uninstall:
