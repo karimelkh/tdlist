@@ -76,21 +76,20 @@ namespace Process {
   */
 void all_args(int argc, char* argv[], tdlist& list) {
   int tid;
-  std::string opt = argv[2];
-  print_args(argc, argv);
+  std::string opt = argv[1];
+  // print_args(argc, argv);
   if(opt == "add") {
-    log_msg("add mode");
+    // log_msg("add mode");
     list.add_task(argv[2], argv[3], argv[4], argv[5]);
   } else if(opt == "rm") {
-    log_msg("rm mode");
+    // log_msg("rm mode");
     tid = (int) argv[2][0];
     rm(tid, list);
   } else if(opt == "edit") {
-  //} else if(strcmp(argv[1], "edit") == 1) {
-    log_msg("edit mode");
+    // log_msg("edit mode");
     tid = (int) argv[2][0];
     edit(tid, argv[3][0], argv[4], list);
-  } else {
+  } else if(opt != "display") {
     std:: cout << argv[1] << ": nothing appropriate." << std::endl;
   }
   list.display_tasks();
